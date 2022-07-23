@@ -51,12 +51,12 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
           ECR_REPOSITORY: kistik-repo
-          IMAGE_TAG: latest
+          IMAGE_TAG: ${{ github.sha }}
         run: |
           # Build a docker container and push it to ECR
           docker pull nginxdemos/hello
           echo "Pushing image to ECR..."
-          docker images
+          echo $ECR_REGISTRY
           docker tag nginxdemos/hello:latest public.ecr.aws/q5n9t4a9/kistik-repo:latest
           docker images
           docker push public.ecr.aws/q5n9t4a9/kistik-repo:latest
