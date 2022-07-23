@@ -57,7 +57,7 @@ jobs:
           docker pull nginxdemos/hello
           echo "Pushing image to ECR..."
           docker images
-          docker image tag nginxdemos/hello:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker tag nginxdemos/hello:latest public.ecr.aws/q5n9t4a9/kistik-repo:latest
           docker images
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push public.ecr.aws/q5n9t4a9/kistik-repo:latest
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
