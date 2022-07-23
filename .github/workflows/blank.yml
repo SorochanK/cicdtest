@@ -46,6 +46,9 @@ jobs:
         with:
           registry-type: 'public'
 
+      #          docker push $ECR_REGISTRY/$ECR_REPOSITORY/nginxdemos/hello/:$IMAGE_TAG
+      #          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY/nginxdemos/hello:$IMAGE_TAG"
+
       - name: Build, tag, and push Nginx image to Amazon ECR
         id: build-image
         env:
@@ -57,7 +60,5 @@ jobs:
           docker pull nginxdemos/hello
           echo "Pushing image to ECR..."
           docker images
-          docker image tag nginxdemos/hello:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker image tag nginxdemos/hello:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY/nginx-demo:$IMAGE_TAG
           docker images
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY/nginxdemos/hello/:$IMAGE_TAG
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY/nginxdemos/hello:$IMAGE_TAG"
