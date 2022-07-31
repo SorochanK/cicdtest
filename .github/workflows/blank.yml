@@ -64,14 +64,14 @@ jobs:
         
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@1
+        uses: aws-actions/amazon-ecs-render-task-definition@1.1.1
         with:
           task-definition: task-definition.json
           container-name: nginx-demo
           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
-        uses: aws-actions/amazon-ecs-deploy-task-definition@1
+        uses: aws-actions/amazon-ecs-deploy-task-definition@1.1.1
         with:
           task-definition: task-definition.json
           service: nginx-service
